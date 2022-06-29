@@ -1,0 +1,108 @@
+body
+{
+    font-family: 'PT Sans', sans-serif;
+    margin-top: 150px;
+    align-content: center;
+    text-align: center;
+}
+select
+{
+    width: 207px;
+    height: 31px;
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    border: 1px solid;
+    border-radius: 10px;
+    text-align: center;    
+}
+
+h1
+{
+    margin-bottom: 13px;
+}
+
+hr
+{
+    margin-top: -3px;
+}
+
+a
+{
+    text-decoration: none;
+    color: black;
+    padding: 22px;
+    margin: 25px;
+}
+
+p
+{
+    margin-top: 16px;
+    margin-bottom: 65px;
+}
+
+a:hover
+{
+    color: #0BF9CD;;
+}
+
+a:visited
+{
+    color: darkslateblue;
+}
+
+table
+{
+    align-content: center;
+    padding: 25px;
+    padding-left: 15px;
+}
+
+td
+{
+    border: 1px solid black;
+    padding: 7px;
+}
+
+td:hover
+{
+    background-color: cornflowerblue;
+}
+
+form
+{
+    padding: 15px;
+    margin-top: 65px;
+}
+
+#btnSalvar
+{
+    font-family: 'PT Sans', sans-serif;
+    height: 50px;
+    width: 200px;
+    border: 1px solid gray;
+}
+
+.listHeader
+{
+    padding: 15px;
+    padding-bottom: 0px;
+    margin-top: 60px;
+}
+
+.header
+{
+    border: 1px solid black;
+    padding: 7px;
+    width: 25%;
+}
+
+input
+{
+    border-radius: 10px;
+    outline: none;
+    width: 195px;
+    border: 1px solid;
+    padding: 7px;
+    margin: 8px 0;
+}
