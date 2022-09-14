@@ -6,10 +6,11 @@
     class Imovel extends Banco
     {
         private $id;
+        private $foto;
         private $tipo;
         private $valor;
         private $descricao;
-
+        private $fotoTipo;
         
         public function getIdImovel()
         {
@@ -21,7 +22,16 @@
             $this->id = $id;
         }
 
-        # modifique
+        public function getFoto()
+        {
+            return $this->foto;
+        }
+
+        public function setFoto($foto)
+        {
+            $this->foto = $foto;
+        }
+        
         public function getTipo()
         {
             if($this->tipo == 'A')
@@ -65,15 +75,61 @@
             $this->descricao = $descricao;
         }
 
+        public function getFotoTipo()
+        {
+            return $this->fotoTipo;
+        }
+
+        public function setFotoTipo($fotoTipo)
+        {
+            $this->fotoTipo = $fotoTipo;
+        }
+
         public function save()
         {
+            $result = false;
+
             # Cria um objeto do tipo conexao
             $conexao = new Conexao();
 
-            # Cria um query de inserção passando os atributos que serão armazenados
-            $query = "insert into imovel (id, descricao, tipo, valor) values (null, :descricao, :tipo, :valor)";
+            # Cria um query de inserção passando os atributos que serão armazenados            
+            # $query = "insert into imovel (id, descricao, tipo, valor) values (null, :descricao, :tipo, :valor)";
+
+            if ($conn = $conexao->getConnection())
+            {
+                if ($this->id > 0)
+                {
+                    $query = "UPDATE imovel SET descricao = :descricao, foto = :foto, valor = :valor, tipo = :tipo, fotoTipo = :fotoTipo WHERE id = :id";
+                    $stmt = $conn->prepare($query);
+                    if ($stmt->execute(array(':descricao' => $this->descricao,
+                                            ':foto' => $this->foto, 
+                                            ':valor' => $this->valor, 
+                                            ':tipo' => $this->tipo,
+                                            ':fotoTipo' => $this->fotoTipo,
+                                            ':id' => $this->id))) 
+                    {
+                        $result = $stmt->rowCount();
+                    }
+                }
+            
+
+                else
+                {
+                    $query = "insert into imovel (id, descricao, tipo, valor, foto, fotoTipo) values (null, :descricao, :tipo, :valor, :foto, :fotoTipo)";
+                    $stmt = $conn->prepare($query);
+                    if ($stmt->execute(array(':descricao' => $this->descricao, 
+                                            ':foto' => $this->foto, 
+                                            ':valor' => $this->valor,
+                                            ':tipo' => $this->tipo,
+                                            ':fotoTipo' => $this->fotoTipo)))
+                    {
+                        $result = $stmt->rowCount();
+                    }                              
+                }
+            }
 
             # Cria a conexão com o banco de dados
+            /*
             if ($conn = $conexao->getConnection())
             {
                 # Prepara a query para execução
@@ -87,6 +143,7 @@
                     $result = $stmt->rowCount();
                 }
             }
+            */
             return $result;
         }
 
@@ -104,6 +161,7 @@
             }
             return $result;
         }
+
         public function find($id)
         {
             $conexao = new Conexao();

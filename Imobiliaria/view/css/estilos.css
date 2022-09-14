@@ -5,6 +5,7 @@ body
     align-content: center;
     text-align: center;
 }
+
 select
 {
     width: 207px;
@@ -75,6 +76,21 @@ form
     margin-top: 65px;
 }
 
+input:hover
+{
+    background-color: rgb(195, 209, 235);
+}
+
+input
+{
+    border-radius: 10px;
+    outline: none;
+    width: 195px;
+    border: 1px solid;
+    padding: 7px;
+    margin: 8px 0;
+}
+
 #btnSalvar
 {
     font-family: 'PT Sans', sans-serif;
@@ -96,13 +112,20 @@ form
     padding: 7px;
     width: 25%;
 }
-
-input
+/* Links da página principal */
+#page-principal
 {
-    border-radius: 10px;
-    outline: none;
-    width: 195px;
-    border: 1px solid;
-    padding: 7px;
-    margin: 8px 0;
+    padding-right: 0px;
+    text-align: center;
+}
+
+/* Login form */
+#cadLogin
+{
+    text-align: center;
+}
+
+#cadLogin input
+{
+    align-items: flex-start;
 }

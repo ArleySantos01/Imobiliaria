@@ -5,7 +5,7 @@
     {
         # Salvar o usuário submetido pelo formulário
         # public static function - Em caso de futuros problemas
-        public function salvar()
+        public static function salvar()
         {
             $usuario = new Usuario();
 
@@ -20,22 +20,31 @@
         }
 
         # Lista os usuários
-        public function listar()
+        public static function listar()
         {
             $usuario = new Usuario;        # Objeto para o usuário
             return $usuario->listAll();    # Chama o método listAll()
         }
 
         # Mostrar formulário para editar um usuário
-        public function editar($id)
+        public static function editar($id)
         {
             $usuario = new Usuario();
             $usuario = $usuario->find($id);
             return $usuario;
         }
 
+        # Logar com um usuário no sistema
+        public static function logar()
+        {
+            $usuario = new Usuario();
+            $usuario->setLogin($_POST['login']);
+            $usuario->setSenha($_POST['senha']);
+            return $usuario->logar();
+        }
+
         # Apaga um usuário conforme o id informado
-        public function excluir($id)
+        public static function excluir($id)
         {
             $usuario = new Usuario;
             $usuario = $usuario->remove($id);

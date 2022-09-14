@@ -1,3 +1,14 @@
+<?php
+    if (isset($_GET['tipo']))
+    {
+        $imoveis = call_user_func(array('ImovelController', 'listarTipo'), $_GET['tipo']);
+    }
+    else
+    {
+        $imoveis = call_user_func(array('ImovelController', 'listar'));
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,21 +35,31 @@
 
                     # Chama a função PHP que permite informar a classe e o método que será acionado
                     $regImovel = call_user_func(array('ImovelController', 'listar'));
+                    $cont = 0;
 
                     if (isset($regImovel) && !empty($regImovel))
                     {
                         foreach($regImovel as $imovel)
                         {
-                            ?>
-                            <tr>
-                                <td><?php echo $imovel->getTipo(); ?></td>
-                                <td><?php echo $imovel->getPreco(); ?></td>
-                                <td>
-                                    <a href="index.php?page=imobiliaria&action=editar&id=<?php echo $imovel->getIdImovel(); ?>">Editar</a>
-                                    <a href="index.php?page=imobiliaria&action=excluir&id=<?php echo $imovel->getIdImovel(); ?>">Excluir</a>
-                                </td>
-                            </tr>
-                            <?php
+                            if ($cont == 0)
+                            {
+                                echo '<tr>';
+                            }
+
+                            echo '<td>';
+                            echo '<p align="center"><img style="width: 25%" src="data:'.$imovel->getFotoTipo().';base64,'.base64_encode($imovel->getFoto()).'"></p><br>';;
+                            echo substr($imovel->getDescricao(), 0,70).'...<br>';
+                            echo '<strong>Valor: </strong>'.$imovel->getPreco().'<br>';
+                            $tipo = $imovel->getTipo() == 'A' ? 'Aluguel' : 'Venda';
+                            echo '<strong>Tipo: </strong>'.$tipo.'<br>';
+                            echo '<a href="index.php?action=editar&id='.$imovel->getIdImovel().'&page=imovel">Editar</a>&nbsp;&nbsp;&nbsp;';
+                            echo '<a href="index.php?action=excluir&id='.$imovel->getIdImovel().'&page=imovel">Excluir</a>';
+                            echo '<a href="index.php?action=excluir&id='.$imovel->getIdImovel().'&page=imovel">Galeria</a>';    # TO-DO: adicionar a funcionalidade da galeria
+                            $cont++;
+                            if ($cont == 4)
+                            {
+                                $cont = 0;
+                            }
                         }
                     }
                     else

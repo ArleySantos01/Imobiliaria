@@ -38,7 +38,33 @@
 
         public function setSenha($senha)
         {
-            $this->senha = $senha;
+            $this->senha = md5($senha);
+        }
+
+        public function logar()
+        {
+            $conexao = new Conexao();
+            $conn = $conexao->getConnection();
+
+            # Cria um query de seleção de usuário
+            $query = "SELECT * FROM usuario WHERE login = :login AND senha = :senha";
+            $stmt = $conn->prepare($query);
+
+            # Executa a query
+            # array(':login' => $this->getLogin(), ':senha' => $this->getSenha())
+            if ($stmt->execute(array(':login'=>$this->login, ':senha'=>$this->senha)))
+            {
+                if ($stmt->rowCount() > 0)
+                {
+                    $result = true;
+                }
+
+                else
+                {
+                    $result = false;
+                }
+            }
+            return $result;
         }
 
         # modifique/copie
