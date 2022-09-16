@@ -47,14 +47,14 @@
                             }
 
                             echo '<td>';
-                            echo '<p align="center"><img style="width: 25%" src="data:'.$imovel->getFotoTipo().';base64,'.base64_encode($imovel->getFoto()).'"></p><br>';;
+                            echo '<p align="center"><img style="width: 25%" src="data:'.$imovel->getFotoTipo().';base64,'.base64_encode($imovel->getFoto()).'"></p><br>';
                             echo substr($imovel->getDescricao(), 0,70).'...<br>';
                             echo '<strong>Valor: </strong>'.$imovel->getPreco().'<br>';
                             $tipo = $imovel->getTipo() == 'A' ? 'Aluguel' : 'Venda';
                             echo '<strong>Tipo: </strong>'.$tipo.'<br>';
                             echo '<a href="index.php?action=editar&id='.$imovel->getIdImovel().'&page=imovel">Editar</a>&nbsp;&nbsp;&nbsp;';
                             echo '<a href="index.php?action=excluir&id='.$imovel->getIdImovel().'&page=imovel">Excluir</a>';
-                            echo '<a href="index.php?action=excluir&id='.$imovel->getIdImovel().'&page=imovel">Galeria</a>';    # TO-DO: adicionar a funcionalidade da galeria
+                            echo '<a href="index.php?action=galeria&id='.$imovel->getIdImovel().'&page=imovel">Galeria</a>';    # TO-DO: adicionar a funcionalidade da galeria
                             $cont++;
                             if ($cont == 4)
                             {

@@ -196,7 +196,7 @@
             $result = false;
             $conexao = new Conexao();               # Objeto do tipo conexão
             $conn = $conexao->getConnection();      # Cria a conexão com o banco de dados
-            $query = "SELECT * FROM imovel";   # Cria a query de seleção
+            $query = "SELECT * FROM imovel";        # Cria a query de seleção
             $stmt = $conn->prepare($query);         # Prepara a query para execução
             $result = array();                      # Cria um array para receber o resultado da seleção
 

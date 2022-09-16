@@ -1,4 +1,4 @@
-<?php
+<?php   
     # Tarefa imóvel: crie uma galeria
     #TO-DO: Criar uma base de dados Galeria,
     #       Criar uma tela para a galeria,
@@ -131,7 +131,7 @@
             {
                 if ($stmt->rowCount() > 0)
                 {
-                    $result = $stmt->fetchObject(Galeria::class);   # CLASSE INEXISTENTE, CRIAR                    
+                    $result = $stmt->fetchObject(Galeria::class);
                 }
 
                 else
@@ -180,13 +180,13 @@
             $stmt = $conn->prepare($query);
             $result = array();
 
-            if ($stmt->execute())
+            /*if ($stmt->execute())
             {
                 while ($rs = $stmt->fetchObject(Galeria::class))
                 {
                     $result[] = $rs;
                 }
-            }
+            }*/
 
             return $result;
         }

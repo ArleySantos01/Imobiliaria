@@ -3,6 +3,7 @@
 
     require_once 'Controller/UsuarioController.php';
     require_once 'Controller/ImovelController.php';
+    require_once 'Controller/GaleriaController.php';
     require_once 'Header.php';
 
     if (isset($_SESSION['logado']) && $_SESSION['logado'] == true)
@@ -68,6 +69,12 @@
                     if ($_GET['action'] == 'listar')
                     {
                         require_once 'view/ListImobiliaria.php';
+                    }
+
+                    if ($_GET['action'] == 'galeria')
+                    {
+                        #$galeria = call_user_func(array('GaleriaController', 'listar'), $_GET['id']);
+                        require_once 'view/EditarGaleria.php';
                     }
                 }
                 else
